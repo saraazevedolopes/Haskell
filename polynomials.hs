@@ -20,7 +20,7 @@ grau l = maximum (map snd l)
 
 {- Function that calculates the derivative of a polynomial. -}
 deriv :: Polynomial -> Polynomial
-deriv ((0,0):t) = [(0,0)] ++ deriv t
+deriv ((_,0):t) = [(0,0)] ++ deriv t
 deriv l = map (\(c,d) -> (c*(fromIntegral d), d-1)) (filter (\(c,d) -> d > 0) l)
 
 {- Function that replaces the x of a polynomial and calculates the value of the polynomial. -}
@@ -43,6 +43,7 @@ sortspol = sortOn (snd)
 
 {- Function that given a polynomial constructs a equivalent polynomial in which several monomials with the same cannot appear grade. In other words,
 a function that obtains the polynominal in the canonic form. -} 
+canpol :: Polynomial -> Polynomial
 canpol [] = []
 canpol [m] = [m]
 canpol ((x,y):t) = (x',y) : canpol t'
